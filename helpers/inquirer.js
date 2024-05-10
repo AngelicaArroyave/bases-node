@@ -81,8 +81,47 @@ const readInput = async(message) => {
     return desc
 }
 
-const listTaksToBeDeleted = async(tasks = []) => {
+const listTasksToBeDeleted = async(tasks = []) => {
+    const choices = tasks.map((task, index) => {
+        const idx = `${index + 1}`.green
 
+        return {
+            value: task.id,
+            name: `${idx} ${task.desc}`
+        }
+    })
+
+    choices.unshift({
+        value: '0',
+        name: '0. '.green + 'Cancelar'
+    })
+
+    const deleteOpts = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Borrar',
+            choices
+        }
+    ]
+
+    const { id } = await inquirer.prompt(deleteOpts)
+
+    return id
 }
 
-module.exports = { inquirerMenu, pause, readInput, listTaksToBeDeleted }
+const confirm = async(message) => {
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ]
+
+    const { ok } = await inquirer.prompt(question)
+    
+    return ok
+}
+
+module.exports = { inquirerMenu, pause, readInput, listTasksToBeDeleted, confirm }
