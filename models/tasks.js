@@ -44,7 +44,7 @@ class Tasks {
         this.listArr.forEach(task => {
             const { desc, completed } = task
             const status = completed ? 'Completada'.green : 'Pendiente'.red
-            const typeFile = completed ? completed : status
+            const typeFile = completed ? completed.green : status
             cont += 1
             
             if ((valueCompleted && completed) || (!valueCompleted && !completed)) console.log(`${cont.toString().green}. ${desc} :: ${typeFile}`);
@@ -53,6 +53,18 @@ class Tasks {
 
     deleteTask(id = '') {
         if(this._list[id]) delete this._list[id]
+    }
+
+    toggleCompleted(ids = []) {
+        ids.forEach(id => {
+            const task = this._list[id]
+
+            if(!task.completed) task.completed = new Date().toISOString()
+        })
+        
+        this.listArr.forEach(task => {
+            if(!ids.includes(task.id)) this._list[task.id].completed = null
+        })
     }
 }
 

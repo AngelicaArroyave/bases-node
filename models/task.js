@@ -8,6 +8,7 @@ class Task {
     constructor(desc) {
         this.id = uuidv4()
         this.desc = desc
+        this.completed = null
     }
 }
 

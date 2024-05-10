@@ -124,4 +124,29 @@ const confirm = async(message) => {
     return ok
 }
 
-module.exports = { inquirerMenu, pause, readInput, listTasksToBeDeleted, confirm }
+const showSelectedList = async(tasks = []) => {
+    const choices = tasks.map((task, index) => {
+        const idx = `${index + 1}`.green
+
+        return {
+            value: task.id,
+            name: `${idx} ${task.desc}`,
+            checked: (task.completed) ? true : false
+        }
+    })
+
+    const options = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Selecciones',
+            choices
+        }
+    ]
+
+    const { ids } = await inquirer.prompt(options)
+
+    return ids
+}
+
+module.exports = { inquirerMenu, pause, readInput, listTasksToBeDeleted, confirm, showSelectedList }
