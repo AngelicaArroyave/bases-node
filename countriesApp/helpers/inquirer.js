@@ -64,31 +64,35 @@ export const readInput = async(message) => {
     return desc
 }
 
-const listTasksToBeDeleted = async(tasks = []) => {
-    const choices = tasks.map((task, index) => {
-        const idx = `${index + 1}`.green
-
-        return {
-            value: task.id,
-            name: `${idx} ${task.desc}`
-        }
+export const listSiteInformation = async(place = '') => {
+    const choices = []
+    const listChoices = Object.keys(place[0])
+    listChoices.forEach((info, index) => {
+        const number = `${index + 1}.`.green
+        choices.push({
+            value: number,
+            name: `${number} ${info.charAt(0).toUpperCase() + info.slice(1)}`
+        })
     })
-
     choices.unshift({
         value: '0',
-        name: '0. '.green + 'Cancelar'
+        name: '0. '.green + 'Cancel'
     })
-
-    const deleteOpts = [
+    choices.pop()
+    choices.push({
+        value: '8',
+        name: '8. '.green + 'All'
+    })
+    const listOpts = [
         {
             type: 'list',
             name: 'id',
-            message: 'Borrar',
+            message: 'Seleccione información a ver',
             choices
         }
     ]
 
-    const { id } = await inquirer.prompt(deleteOpts)
+    const { id } = await inquirer.prompt(listOpts)
 
     return id
 }

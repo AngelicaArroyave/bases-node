@@ -1,4 +1,4 @@
-import { inquirerMenu, pause, readInput } from "./helpers/inquirer.js";
+import { inquirerMenu, listSiteInformation, pause, readInput } from "./helpers/inquirer.js";
 import { Search } from "./models/search.js";
 
 const main = async() => {
@@ -10,18 +10,9 @@ const main = async() => {
 
         switch (opt) {
             case 1:
-                const place = await readInput('Ciudad a buscar: ')
-                console.log("🚀 ~ main ~ place:", place)
-                console.log('\nInformación de la ciudad\n'.green);
-                console.log('Abreviación: ');
-                console.log('Capital: ');
-                console.log('Moneda: ');
-                console.log('Nombre: ');
-                console.log('Indicativo: ');
-                console.log('Población: ');
-                console.log('URL imagen de Bandera: ');
-                console.log('URL imagen de Emblema: ');
-                console.log('URL imagen de Ubicación: ');
+                const term = await readInput('Ciudad a buscar: ')
+                const place = await search.city(term)
+                const optionSelected = await listSiteInformation(place)
                 break;
             case 2:
                 console.log('Historial');
