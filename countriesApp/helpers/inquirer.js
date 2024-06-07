@@ -23,13 +23,40 @@ const menuOpts = [
     }
 ]
 
-export const inquirerMenu = async() => {
+const informationMenuOpts = [
+    {
+        type: 'list',
+        name: 'option',
+        message: 'Seleccione información a ver',
+        choices: [
+            {
+                value: '0',
+                name: '0. '.green + 'Cancelar'
+            },
+            {
+                value: 1,
+                name: `${'1.'.green} Información básica`
+            },
+            {
+                value: 2,
+                name: `${'2.'.green} Información meteorológica`
+            },
+            {
+                value: 3,
+                name: `${'3.'.green} Toda la información`
+            }
+        ]
+    }
+]
+
+export const inquirerMenu = async(typeOptions = 'general') => {
     console.clear()
     console.log('==============================='.green);
     console.log('     Seleccione una opción'.white);
     console.log('===============================\n'.green);
 
-    const { option } = await inquirer.prompt(menuOpts)
+    const choiceOptions = typeOptions !== 'general' ? informationMenuOpts : menuOpts
+    const { option } = await inquirer.prompt(choiceOptions)
 
     return option
 }
@@ -62,76 +89,4 @@ export const readInput = async(message) => {
 
     const { desc } = await inquirer.prompt(question)
     return desc
-}
-
-export const listSiteInformation = async(place = '') => {
-    const choices = []
-    const listChoices = Object.keys(place[0])
-    listChoices.forEach((info, index) => {
-        const number = `${index + 1}.`.green
-        choices.push({
-            value: number,
-            name: `${number} ${info.charAt(0).toUpperCase() + info.slice(1)}`
-        })
-    })
-    choices.unshift({
-        value: '0',
-        name: '0. '.green + 'Cancel'
-    })
-    choices.pop()
-    choices.push({
-        value: '8',
-        name: '8. '.green + 'All'
-    })
-    const listOpts = [
-        {
-            type: 'list',
-            name: 'id',
-            message: 'Seleccione información a ver',
-            choices
-        }
-    ]
-
-    const { id } = await inquirer.prompt(listOpts)
-
-    return id
-}
-
-const confirm = async(message) => {
-    const question = [
-        {
-            type: 'confirm',
-            name: 'ok',
-            message
-        }
-    ]
-
-    const { ok } = await inquirer.prompt(question)
-    
-    return ok
-}
-
-const showSelectedList = async(tasks = []) => {
-    const choices = tasks.map((task, index) => {
-        const idx = `${index + 1}`.green
-
-        return {
-            value: task.id,
-            name: `${idx} ${task.desc}`,
-            checked: (task.completed) ? true : false
-        }
-    })
-
-    const options = [
-        {
-            type: 'checkbox',
-            name: 'ids',
-            message: 'Selecciones',
-            choices
-        }
-    ]
-
-    const { ids } = await inquirer.prompt(options)
-
-    return ids
 }
