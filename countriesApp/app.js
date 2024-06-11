@@ -18,10 +18,14 @@ const selectMainChoice = async(option) => {
     switch (option) {
         case 1:
             const term = await readInput('Ciudad a buscar: ')
-            await selectAChoice(term, search)
+            let information = await selectAChoice(term, search)
+            search.addHistory(information)
             break
         case 2:
-            console.log('Historial')
+            search.history.forEach((place, index) => {
+                const idx = `${index + 1}.`.green
+                console.log(`${idx} ${place}`);
+            })
             break
     }
 }
@@ -41,10 +45,12 @@ const selectAChoice = async(term, search) => {
             break
         case 3:
             printCityInformation(term, place[0])
-            console.log('---------------------------------------------><---------------------------------------------')
+            console.log('---------------------------------------------><---------------------------------------------');
             printWeatherInformation(localWeather)
             break
     }
+
+    return place[0].name
 }
 
 const printCityInformation = (term, place) => {
@@ -60,6 +66,7 @@ const printCityInformation = (term, place) => {
 }
 
 const printWeatherInformation = (localWeather) => {
+    console.log('La información meteorológica se muestra en grados'.green)
     console.log('Descripción: '.blue, `${localWeather.desc}`.green)
     console.log('Temperatura: '.blue, `${localWeather.temp}`.green)
     console.log('Temperatura máxima: '.blue, `${localWeather.max}`.green)

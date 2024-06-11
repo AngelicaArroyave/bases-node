@@ -1,15 +1,17 @@
 import axios from 'axios'
+import fs, { readFileSync } from 'fs'
 
 export class Search {
     BASE_URL_COUNTRIES = 'https://api.sampleapis.com/countries/countries/'
     BASE_URL_WEATHER = 'https://api.openweathermap.org/data/2.5/weather'
-    history = ['Belgium', 'Bulgaria', 'Colombia']
+    history = []
+    dbPath = './db/database.json'
 
     constructor() {
-        // FIXME: Leer DB si existe
+        this.readDB()
     }
 
-    async  city(place = '') {
+    async city(place = '') {
         try {
             // Para hacer una consulta de la ciudad: https://api.sampleapis.com/countries/countries/?name=Spain
             const instance = axios.create({
@@ -49,5 +51,28 @@ export class Search {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    addHistory(place = '') {
+        if(this.history.includes((place))) return
+
+        this.history = this.history.splice(0,5)
+        this.history.unshift(place)
+        this.saveDB()
+    }
+
+    saveDB() {
+        const payload = {
+            history: this.history
+        }
+        fs.writeFileSync(this.dbPath, JSON.stringify(payload))
+    }
+
+    readDB() {
+        if(!fs.existsSync(this.dbPath)) return null
+        
+        const information = readFileSync(this.dbPath, { encoding: 'utf-8' })
+        const data = JSON.parse(information)
+        this.history = data.history
     }
 }
