@@ -1,0 +1,16 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "Aplicación del curso *Legacy - Node de cero a experto en Udemy*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
