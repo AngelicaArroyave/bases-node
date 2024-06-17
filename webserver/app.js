@@ -1,9 +1,10 @@
+import dotenv from 'dotenv/config'
 import express from 'express'
 import hbs from 'hbs'
 import path from 'path'
 
 const app = express()
-const PORT = 8080
+const PORT = process.env.PORT
 const __dirname = path.resolve()
 const information = {
     name: 'TEMPLATED',

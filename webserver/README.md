@@ -10,7 +10,7 @@ Para iniciar el proyecto se necesita instalar las siguientes dependencias:
 5. ```npm install dotenv``` Es un módulo de dependencia cero que carga variables de entorno de un archivo .env en process.env
 
 ## ¿Cómo ejecutar el código?
-Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, sin embargo en mi caso debo usar ```npx nodemon app```
+Para ejecutar o correr el proyecto se debe usar el comando ```npm start``` o ```nodemon app```, sin embargo en mi caso debo usar ```npx nodemon app```
 
 ## Documentación
 1. [Nodemon](https://www.npmjs.com/package/nodemon)
