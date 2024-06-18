@@ -1,5 +1,5 @@
 # restserver
-Aplicación del curso *Legacy - Node de cero a experto en Udemy*
+Aplicación básica de Web Server y Rest Server del curso *Legacy - Node de cero a experto en Udemy*
 
 ## Instalaciones necesarias
 Para iniciar el proyecto se necesita instalar las siguientes dependencias:
