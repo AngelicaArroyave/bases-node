@@ -29,12 +29,22 @@ export const usersPost = async(req, res = response) => {
     })
 }
 
-export const usersPut = (req, res = response) => {
-    const id = req.params.id
+export const usersPut = async(req, res = response) => {
+    const { id } = req.params
+    // Los campos email, password y google no se pueden modificar
+    const { _id, email, password, google, ...rest } = req.body
+
+    if(password) {
+        // Encriptar el password
+        const salt = bcryptjs.genSaltSync(10)
+        rest.password = bcryptjs.hashSync(password, salt)
+    }
+
+    const user = await User.findByIdAndUpdate(id, rest)
 
     res.status(200).json({
         msg: 'Put API - Controller',
-        id
+        user
     })
 }
 

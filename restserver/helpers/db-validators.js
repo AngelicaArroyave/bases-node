@@ -12,3 +12,9 @@ export const emailExists = async (email = '') => {
 
     if(exists) throw new Error(`The email ${email} is not valid because it is registered in the database`)
 }
+
+export const uerIDExists = async (id = '') => {
+    const exists = await User.findById({ id })
+
+    if(!exists) throw new Error(`The ID ${id} does not exist in the database`)
+}
