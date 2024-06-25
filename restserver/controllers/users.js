@@ -19,8 +19,6 @@ export const usersPost = async(req, res = response) => {
     const { name, email, password, role } = req.body
     const user = new User({ name, email, password, role })
 
-    // Verificar que el correo existe
-
     // Encriptar el password
     const salt = bcryptjs.genSaltSync(10)
     user.password = bcryptjs.hashSync(password, salt)
