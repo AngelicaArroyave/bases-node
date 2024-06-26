@@ -1,39 +1,61 @@
 import { request, response } from "express"
+import { User } from "../models/user.js"
+import bcryptjs from 'bcryptjs'
 
-export const usersGet = (req = request, res = response) => {
-    const { q, name = 'No name', apiKey, page = "1", limit } = req.query
+export const usersGet = async(req = request, res = response) => {
+    const { limit = 2, from = 0 } = req.query
+    // Solo muestra los usuario cuyo estado es verdadero, es decir, si estubiera activo
+    const query = { state: true }
+    const users = await User.find(query).skip(Number(from)).limit(Number(limit))
+    const total = await User.countDocuments(query)
     
     res.status(200).json({
-        msg: 'Get API - Controller',
-        q,
-        name,
-        apiKey,
-        page,
-        limit
+        total,
+        users
     })
 }
 
-export const usersPost = (req, res = response) => {
-    const body = req.body
+export const usersPost = async(req, res = response) => {
+    const { name, email, password, role } = req.body
+    const user = new User({ name, email, password, role })
+
+    // Encriptar el password
+    const salt = bcryptjs.genSaltSync(10)
+    user.password = bcryptjs.hashSync(password, salt)
+
+    await user.save()
     res.status(201).json({
-        msg: 'Post API - Controller',
-        body
+        user
     })
 }
 
-export const usersPut = (req, res = response) => {
-    const id = req.params.id
+export const usersPut = async(req, res = response) => {
+    const { id } = req.params
+    // Los campos email, password y google no se pueden modificar
+    const { _id, email, password, google, ...rest } = req.body
 
-    res.status(200).json({
-        msg: 'Put API - Controller',
-        id
-    })
+    if(password) {
+        // Encriptar el password
+        const salt = bcryptjs.genSaltSync(10)
+        rest.password = bcryptjs.hashSync(password, salt)
+    }
+
+    const user = await User.findByIdAndUpdate(id, rest)
+
+    res.status(200).json(user)
 }
 
 export const usersPatch = (req, res = response) => {
     res.status(200).json({ msg: 'Patch API - Controller' })
 }
 
-export const usersDelete = (req, res = response) => {
-    res.status(200).json({ msg: 'Delete API - Controller' })
+export const usersDelete = async(req, res = response) => {
+    const { id } = req.params
+
+    // Eliminar un registro fisicamente
+    // const user = await User.findByIdAndDelete(id)
+    // No se elimina el registro de la BD, pero se modifica el estado
+    const user = await User.findByIdAndUpdate(id, { state: false })
+
+    res.status(200).json({ user })
 }
