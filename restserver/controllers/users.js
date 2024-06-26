@@ -2,16 +2,16 @@ import { request, response } from "express"
 import { User } from "../models/user.js"
 import bcryptjs from 'bcryptjs'
 
-export const usersGet = (req = request, res = response) => {
-    const { q, name = 'No name', apiKey, page = "1", limit } = req.query
+export const usersGet = async(req = request, res = response) => {
+    const { limit = 2, from = 0 } = req.query
+    // Solo muestra los usuario cuyo estado es verdadero, es decir, si estubiera activo
+    const query = { state: true }
+    const users = await User.find(query).skip(Number(from)).limit(Number(limit))
+    const total = await User.countDocuments(query)
     
     res.status(200).json({
-        msg: 'Get API - Controller',
-        q,
-        name,
-        apiKey,
-        page,
-        limit
+        total,
+        users
     })
 }
 
@@ -42,10 +42,7 @@ export const usersPut = async(req, res = response) => {
 
     const user = await User.findByIdAndUpdate(id, rest)
 
-    res.status(200).json({
-        msg: 'Put API - Controller',
-        user
-    })
+    res.status(200).json(user)
 }
 
 export const usersPatch = (req, res = response) => {
