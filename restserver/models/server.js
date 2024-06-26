@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 import { router } from '../routes/users.js'
+import { dbConnection } from '../database/config.js'
 
 export class Server {
     constructor() {
@@ -8,11 +9,18 @@ export class Server {
         this.port = process.env.PORT
         this.usersPath = '/api/users'
 
+        // Conectar a la base de datos
+        this.connectToDB()
+
         // Middlewares
         this.middlewares()
 
         // Rutas de la aplicación
         this.routes()
+    }
+
+    async connectToDB() {
+        await dbConnection()
     }
 
     middlewares() {
