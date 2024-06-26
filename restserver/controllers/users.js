@@ -49,6 +49,13 @@ export const usersPatch = (req, res = response) => {
     res.status(200).json({ msg: 'Patch API - Controller' })
 }
 
-export const usersDelete = (req, res = response) => {
-    res.status(200).json({ msg: 'Delete API - Controller' })
+export const usersDelete = async(req, res = response) => {
+    const { id } = req.params
+
+    // Eliminar un registro fisicamente
+    // const user = await User.findByIdAndDelete(id)
+    // No se elimina el registro de la BD, pero se modifica el estado
+    const user = await User.findByIdAndUpdate(id, { state: false })
+
+    res.status(200).json({ user })
 }
