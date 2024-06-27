@@ -4,18 +4,18 @@ import { check } from "express-validator";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { emailExists, isValidRole, uerIDExists } from "../helpers/db-validators.js";
 
-export const router = Router()
+export const routerUsers = Router()
 
-router.get('/', usersGet)
+routerUsers.get('/', usersGet)
 
-router.put('/:id', [
+routerUsers.put('/:id', [
     check('id', 'The ID is not valid').isMongoId(),
     check('id').custom(uerIDExists),
     check('role').custom(isValidRole),
     validateFields
 ], usersPut)
 
-router.post('/', [
+routerUsers.post('/', [
     check('name', 'The name is required').not().isEmpty(),
     check('email', 'The email is not valid').isEmail(),
     check('email', 'The email is not valid').custom(emailExists),
@@ -25,10 +25,10 @@ router.post('/', [
     validateFields
 ], usersPost)
 
-router.delete('/:id', [
+routerUsers.delete('/:id', [
     check('id', 'The ID is not valid').isMongoId(),
     check('id').custom(uerIDExists),
     validateFields
 ], usersDelete)
 
-router.patch('/', usersPatch)
+routerUsers.patch('/', usersPatch)
