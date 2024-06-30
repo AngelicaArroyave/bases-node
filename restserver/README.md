@@ -11,6 +11,7 @@ Para iniciar el proyecto se necesita instalar las siguientes dependencias:
 6. ```npm install mongoose``` Permite consultar y escribir en la base de datos de MongoDB
 7. ```npm install bcryptjs``` Permite encriptar contraseñas
 8. ```npm install express-validator``` Permite validar peticiones de express
+9. ```npm install jsonwebtoken``` Generación e implementación de JWT (Json Web Token)
 
 ## ¿Cómo ejecutar el código?
 Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, sin embargo en mi caso debo usar ```npx nodemon app```
@@ -24,6 +25,7 @@ Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, si
 6. [Mongoose](https://mongoosejs.com/docs/)
 7. [BcryptJS](https://www.npmjs.com/package/bcryptjs)
 8. [Express Validator](https://express-validator.github.io/docs)
+9. [JWT - Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
 
 ### **Nota:**
 1. Recordar que al descargar el código se debe ejecutar el comando ```npm install``` para la construcción de los diferentes módulos
