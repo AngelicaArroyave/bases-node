@@ -1,6 +1,6 @@
-import { generateJWT } from '../helpers/generate-jwt.js';
-import { response } from 'express';
-import { User } from '../models/user.js';
+import { generateJWT } from '../helpers/generate-jwt.js'
+import { response } from 'express'
+import { User } from '../models/user.js'
 import bcryptjs from 'bcryptjs'
 
 export const login = async(req, res = response) => {
@@ -28,7 +28,7 @@ export const login = async(req, res = response) => {
             token
         })
     } catch (error) {
-        console.log(error);
+        console.log(error)
         res.status(500).json({
             msg: 'Something went wrong'
         })

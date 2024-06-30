@@ -1,7 +1,7 @@
-import { check } from "express-validator";
-import { login } from "../controllers/auth.js";
-import { Router } from "express";
-import { validateFields } from "../middlewares/validate-fields.js";
+import { check } from 'express-validator'
+import { login } from '../controllers/auth.js'
+import { Router } from 'express'
+import { validateFields } from '../middlewares/validate-fields.js'
 
 export const routerAuth = Router()
 

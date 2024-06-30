@@ -1,5 +1,5 @@
-import { request, response } from "express"
-import { User } from "../models/user.js"
+import { request, response } from 'express'
+import { User } from '../models/user.js'
 import bcryptjs from 'bcryptjs'
 
 export const usersGet = async(req = request, res = response) => {

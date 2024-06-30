@@ -20,7 +20,7 @@ export const validateJWT = async(req = request, res = response, next) => {
         req.user = user
         next()
     } catch (error) {
-        console.log(error);
+        console.log(error)
         res.status(401).json({ msg: 'Toke is not valid' })
     }
 }
