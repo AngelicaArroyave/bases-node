@@ -1,8 +1,10 @@
-import { Router } from "express";
-import { usersDelete, usersGet, usersPatch, usersPost, usersPut } from "../controllers/users.js";
-import { check } from "express-validator";
-import { validateFields } from "../middlewares/validate-fields.js";
-import { emailExists, isValidRole, uerIDExists } from "../helpers/db-validators.js";
+import { check } from 'express-validator';
+import { emailExists, isValidRole, uerIDExists } from '../helpers/db-validators.js';
+import { hasRole, isAdminRole } from '../middlewares/validate-roles.js';
+import { Router } from 'express';
+import { usersDelete, usersGet, usersPatch, usersPost, usersPut } from '../controllers/users.js';
+import { validateFields } from '../middlewares/validate-fields.js';
+import { validateJWT } from '../middlewares/validate-jwt.js';
 
 export const routerUsers = Router()
 
@@ -26,6 +28,9 @@ routerUsers.post('/', [
 ], usersPost)
 
 routerUsers.delete('/:id', [
+    validateJWT,
+    isAdminRole,
+    hasRole('ADMIN_ROLE', 'SALES_ROLE'),
     check('id', 'The ID is not valid').isMongoId(),
     check('id').custom(uerIDExists),
     validateFields
