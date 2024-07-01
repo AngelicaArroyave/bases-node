@@ -1,5 +1,5 @@
 import { check } from 'express-validator'
-import { login } from '../controllers/auth.js'
+import { googleSignIn, login } from '../controllers/auth.js'
 import { Router } from 'express'
 import { validateFields } from '../middlewares/validate-fields.js'
 
@@ -10,3 +10,8 @@ routerAuth.post('/login', [
     check('password', 'The password is required').not().isEmpty(),
     validateFields
 ], login)
+
+routerAuth.post('/google', [
+    check('id_token', 'Google token is required').not().isEmpty(),
+    validateFields
+], googleSignIn)

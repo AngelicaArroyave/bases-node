@@ -12,6 +12,7 @@ Para iniciar el proyecto se necesita instalar las siguientes dependencias:
 7. ```npm install bcryptjs``` Permite encriptar contraseñas
 8. ```npm install express-validator``` Permite validar peticiones de express
 9. ```npm install jsonwebtoken``` Generación e implementación de JWT (Json Web Token)
+10. ```npm install google-auth-library --save``` Librería necesaria para la verificación de cuenta con Google
 
 ## ¿Cómo ejecutar el código?
 Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, sin embargo en mi caso debo usar ```npx nodemon app```
@@ -26,6 +27,8 @@ Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, si
 7. [BcryptJS](https://www.npmjs.com/package/bcryptjs)
 8. [Express Validator](https://express-validator.github.io/docs)
 9. [JWT - Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
+10. [Google Sign In - Google Identity](https://developers.google.com/identity/gsi/web/guides/overview?hl=es-419)
 
 ### **Nota:**
 1. Recordar que al descargar el código se debe ejecutar el comando ```npm install``` para la construcción de los diferentes módulos
+2. Se implementa el servicio de Google Sing In para autenticación del usuario
