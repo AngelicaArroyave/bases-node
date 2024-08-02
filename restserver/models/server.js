@@ -1,5 +1,6 @@
 import { dbConnection } from '../database/config.js'
 import { routerAuth } from '../routes/auth.js'
+import { routerCategories } from '../routes/categories.js'
 import { routerUsers } from '../routes/users.js'
 import cors from 'cors'
 import express from 'express'
@@ -8,8 +9,11 @@ export class Server {
     constructor() {
         this.app = express()
         this.port = process.env.PORT
-        this.usersPath = '/api/users'
-        this.authPath = '/api/auth'
+        this.paths = {
+            auth: '/api/auth',
+            categories: '/api/categories',
+            users: '/api/users'
+        }
 
         // Conectar a la base de datos
         this.connectToDB()
@@ -37,8 +41,9 @@ export class Server {
     }
 
     routes() {
-        this.app.use(this.authPath, routerAuth)
-        this.app.use(this.usersPath, routerUsers)
+        this.app.use(this.paths.auth, routerAuth)
+        this.app.use(this.paths.categories, routerCategories)
+        this.app.use(this.paths.users, routerUsers)
     }
 
     listen() {
