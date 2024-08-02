@@ -4,7 +4,7 @@ import bcryptjs from 'bcryptjs'
 
 export const usersGet = async(req = request, res = response) => {
     const { limit = 2, from = 0 } = req.query
-    // Solo muestra los usuario cuyo estado es verdadero, es decir, si estubiera activo
+    // Solo muestra los usuario cuyo estado es verdadero, es decir, si estuviera activo
     const query = { state: true }
     const users = await User.find(query).skip(Number(from)).limit(Number(limit))
     const total = await User.countDocuments(query)
