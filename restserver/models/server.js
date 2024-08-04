@@ -1,6 +1,8 @@
 import { dbConnection } from '../database/config.js'
 import { routerAuth } from '../routes/auth.js'
 import { routerCategories } from '../routes/categories.js'
+import { routerProducts } from '../routes/products.js'
+import { routerSearch } from '../routes/search.js'
 import { routerUsers } from '../routes/users.js'
 import cors from 'cors'
 import express from 'express'
@@ -11,7 +13,9 @@ export class Server {
         this.port = process.env.PORT
         this.paths = {
             auth: '/api/auth',
+            search: '/api/search',
             categories: '/api/categories',
+            products: '/api/products',
             users: '/api/users'
         }
 
@@ -43,6 +47,8 @@ export class Server {
     routes() {
         this.app.use(this.paths.auth, routerAuth)
         this.app.use(this.paths.categories, routerCategories)
+        this.app.use(this.paths.products, routerProducts)
+        this.app.use(this.paths.search, routerSearch)
         this.app.use(this.paths.users, routerUsers)
     }
 

@@ -1,6 +1,7 @@
+import { Category } from '../models/category.js'
+import { Product } from '../models/product.js'
 import { Role } from '../models/role.js'
 import { User } from '../models/user.js'
-import { Category } from '../models/category.js'
 
 export const isValidRole = async (role = '') => {
     const existRole = await Role.findOne({ role })
@@ -22,6 +23,12 @@ export const uerIDExists = async (id = '') => {
 
 export const categoryIDExists = async (id = '') => {
     const exists = await Category.findById(id)
+
+    if(!exists) throw new Error(`The ID ${id} does not exist in the database`)
+}
+
+export const productIDExists = async (id = '') => {
+    const exists = await Product.findById(id)
 
     if(!exists) throw new Error(`The ID ${id} does not exist in the database`)
 }
