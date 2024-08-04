@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "66aebb0b5f34ac7d316a2cb2"
+  },
+  "name": "Best Chicken",
+  "state": true,
+  "user": {
+    "$oid": "667b3fd3831ecd82c3d22189"
+  },
+  "price": 10,
+  "category": {
+    "$oid": "66ac30f31a096f32692104d8"
+  },
+  "description": "The chicken for food preparation",
+  "available": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66aeca3690944ea56028d05e"
+  },
+  "name": "Cake",
+  "state": true,
+  "user": {
+    "$oid": "667b3fd3831ecd82c3d22189"
+  },
+  "price": 0,
+  "category": {
+    "$oid": "66ac30f31a096f32692104d8"
+  },
+  "description": "The best cake for food preparation",
+  "available": true,
+  "__v": 0
+}]
