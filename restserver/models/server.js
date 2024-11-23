@@ -3,9 +3,11 @@ import { routerAuth } from '../routes/auth.js'
 import { routerCategories } from '../routes/categories.js'
 import { routerProducts } from '../routes/products.js'
 import { routerSearch } from '../routes/search.js'
+import { routerUploads } from '../routes/uploads.js'
 import { routerUsers } from '../routes/users.js'
 import cors from 'cors'
 import express from 'express'
+import fileUpload from 'express-fileupload'
 
 export class Server {
     constructor() {
@@ -16,6 +18,7 @@ export class Server {
             search: '/api/search',
             categories: '/api/categories',
             products: '/api/products',
+            uploads: '/api/uploads',
             users: '/api/users'
         }
 
@@ -42,6 +45,13 @@ export class Server {
 
         // Directorio público
         this.app.use(express.static('public'))
+
+        // File upload - Carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }))
     }
 
     routes() {
@@ -49,6 +59,7 @@ export class Server {
         this.app.use(this.paths.categories, routerCategories)
         this.app.use(this.paths.products, routerProducts)
         this.app.use(this.paths.search, routerSearch)
+        this.app.use(this.paths.uploads, routerUploads)
         this.app.use(this.paths.users, routerUsers)
     }
 
