@@ -32,3 +32,11 @@ export const productIDExists = async (id = '') => {
 
     if(!exists) throw new Error(`The ID ${id} does not exist in the database`)
 }
+
+export const allowedCollections = (collection = '', allowedCollections = []) => {
+    const isIncluded = allowedCollections.includes(collection)
+
+    if(!isIncluded) throw new Error(`The collection ${ collection } is not allowed, ${ allowedCollections }`)
+
+    return true
+}
