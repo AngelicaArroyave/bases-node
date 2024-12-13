@@ -1,4 +1,4 @@
-# restserver
+# socket-queues
 Aplicación básica de Web Sockets del curso *Legacy - Node de cero a experto en Udemy*
 
 ## Instalaciones necesarias
