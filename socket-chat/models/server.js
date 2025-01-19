@@ -1,3 +1,4 @@
+import { createServer } from 'http'
 import { dbConnection } from '../database/config.js'
 import { routerAuth } from '../routes/auth.js'
 import { routerCategories } from '../routes/categories.js'
@@ -5,6 +6,8 @@ import { routerProducts } from '../routes/products.js'
 import { routerSearch } from '../routes/search.js'
 import { routerUploads } from '../routes/uploads.js'
 import { routerUsers } from '../routes/users.js'
+import { Server as SocketServer } from 'socket.io'
+import { socketController } from '../sockets/socketController.js'
 import cors from 'cors'
 import express from 'express'
 import fileUpload from 'express-fileupload'
@@ -13,6 +16,8 @@ export class Server {
     constructor() {
         this.app = express()
         this.port = process.env.PORT
+        this.socketServer = createServer(this.app)
+        this.io = new SocketServer(this.socketServer)
         this.paths = {
             auth: '/api/auth',
             search: '/api/search',
@@ -30,6 +35,9 @@ export class Server {
 
         // Rutas de la aplicación
         this.routes()
+
+        // Sockets
+        this.sockets()
     }
 
     async connectToDB() {
@@ -63,7 +71,12 @@ export class Server {
         this.app.use(this.paths.users, routerUsers)
     }
 
+    sockets() {
+        // this.io seria como el servidor
+        this.io.on('connection', socket => socketController(socket, this.io))
+    }
+
     listen() {
-        this.app.listen(this.port, () => console.log(`Listen port ${this.port}`))
+        this.socketServer.listen(this.port, () => console.log(`Listen port ${this.port}`))
     }
 }

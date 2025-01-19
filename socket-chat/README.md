@@ -15,6 +15,7 @@ Para iniciar el proyecto se necesita instalar las siguientes dependencias:
 10. ```npm install google-auth-library --save``` Librería necesaria para la verificación de cuenta con Google
 11. ```npm install express-fileupload``` Permite subir archivos
 12. ```npm install uuid``` Permite generar identificadores únicos
+13. ```npm install socket.io``` Permite la comunicación bidireccional entre clientes y servidores
 
 ## ¿Cómo ejecutar el código?
 Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, sin embargo en mi caso debo usar ```npx nodemon app```
@@ -32,6 +33,7 @@ Para ejecutar o correr el proyecto se debe usar el comando ```nodemon app```, si
 10. [Google Sign In - Google Identity](https://developers.google.com/identity/gsi/web/guides/overview?hl=es-419)
 11. [File Upload - Express](https://www.npmjs.com/package/express-fileupload)
 12. [UUID - Express](https://www.npmjs.com/package/uuid)
+13. [Socket IO](https://www.npmjs.com/package/socket.io)
 
 ### **Nota:**
 1. Recordar que al descargar el código se debe ejecutar el comando ```npm install``` para la construcción de los diferentes módulos

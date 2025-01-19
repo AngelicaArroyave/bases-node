@@ -1,7 +1,8 @@
 import { check } from 'express-validator'
-import { googleSignIn, login } from '../controllers/auth.js'
+import { googleSignIn, login, renewToken } from '../controllers/auth.js'
 import { Router } from 'express'
 import { validateFields } from '../middlewares/validate-fields.js'
+import { validateJWT } from '../middlewares/validate-jwt.js'
 
 export const routerAuth = Router()
 
@@ -15,3 +16,5 @@ routerAuth.post('/google', [
     check('id_token', 'Google token is required').not().isEmpty(),
     validateFields
 ], googleSignIn)
+
+routerAuth.get('/', validateJWT, renewToken)
