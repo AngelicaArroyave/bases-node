@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "d0be9a33-fa08-4510-ac67-512e18164101",
+		"name": "API/Rest Server - Node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28964853"
+	},
+	"item": [
+		{
+			"name": "Create Users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test 16\",\r\n    \"email\": \"test16@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"USER_ROLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Daniela\",\r\n    \"email\": \"jrodriguez@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"img\": \"\",\r\n    \"role\": \"USER_ROLE\",\r\n    \"state\": true,\r\n    \"google\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/667af865194fa2758d13b6cf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"667af865194fa2758d13b6cf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Users - Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users?from=5&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "5"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Users",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MTk3MDkyNDIsImV4cCI6MTcxOTcxNjQ0Mn0.smuc23nMA_kCUmmk5PnbV3cqsaW5zxIIw-wyTijE0Ps",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/users/667b3fd3831ecd82c3d22189",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"667b3fd3831ecd82c3d22189"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test1@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Google Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_token\": \"abcd1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/categories/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/categories/66ac30f31a096f32692104d8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"categories",
+						"66ac30f31a096f32692104d8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create categories",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI1NTkzNjYsImV4cCI6MTcyMjU2NjU2Nn0.9DWGiPb2SprgudypoQct8evBNoBhGg-L4E1mNMgkatc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cook\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/categories/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update categories",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI1NjczNTksImV4cCI6MTcyMjU3NDU1OX0.hHt-3hyo0qGLkl3iQzVIJLKd3GoX3o5s_iW3prhBnGs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cook\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/categories/66ac30f31a096f32692104d8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"categories",
+						"66ac30f31a096f32692104d8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete categories",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI1NjczNTksImV4cCI6MTcyMjU3NDU1OX0.hHt-3hyo0qGLkl3iQzVIJLKd3GoX3o5s_iW3prhBnGs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/categories/66ac30f31a096f32692104d8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"categories",
+						"66ac30f31a096f32692104d8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI3MjYzNzMsImV4cCI6MTcyMjczMzU3M30.-hhQAgF4jqF6AaHnkpGlZJHQ9yNBdEQkp72E0uRV1a8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cake\",\r\n    \"category\": \"66ac30f31a096f32692104d8\",\r\n    \"description\": \"The best cake for food preparation\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/66aebb0b5f34ac7d316a2cb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"66aebb0b5f34ac7d316a2cb2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update products",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI3MjYzNzMsImV4cCI6MTcyMjczMzU3M30.-hhQAgF4jqF6AaHnkpGlZJHQ9yNBdEQkp72E0uRV1a8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Best Chicken\",\r\n    \"price\": 10,\r\n    \"category\": \"66ac30f31a096f32692104d8\",\r\n    \"description\": \"The chicken for food preparation\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/products/66aebb0b5f34ac7d316a2cb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"66aebb0b5f34ac7d316a2cb2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete products",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjdiM2ZkMzgzMWVjZDgyYzNkMjIxODkiLCJpYXQiOjE3MjI3MjYzNzMsImV4cCI6MTcyMjczMzU3M30.-hhQAgF4jqF6AaHnkpGlZJHQ9yNBdEQkp72E0uRV1a8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/products/66aebb0b5f34ac7d316a2cb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"66aebb0b5f34ac7d316a2cb2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search users by collection and term",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/search/users/Test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"users",
+						"Test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search categories by collection and term",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/search/categories/66ac30f31a096f32692104d8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"categories",
+						"66ac30f31a096f32692104d8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search products by collection and term",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/search/products/66aebb0b5f34ac7d316a2cb2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"products",
+						"66aebb0b5f34ac7d316a2cb2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
